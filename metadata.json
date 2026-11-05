@@ -1,0 +1,6 @@
+{
+  "name": "Márgenes Mercado Libre — Pet Shop",
+  "description": "Tablero mobile-first de análisis de costos, comisiones, envíos y rentabilidad de alimentos balanceados en Mercado Libre.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
