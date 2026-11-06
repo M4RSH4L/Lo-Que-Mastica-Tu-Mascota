@@ -15,7 +15,29 @@
   </head>
   <body>
     <div id="root"></div>
-    <script type="module" src="/src/main.tsx"></script>
+    <script>
+      window.__loadCompiledBundle = function () {
+        var link = document.createElement('link');
+        link.rel = 'stylesheet';
+        link.href = './assets/app.css';
+        document.head.appendChild(link);
+        var s = document.createElement('script');
+        s.type = 'module';
+        s.src = './assets/app.js';
+        document.body.appendChild(s);
+      };
+    </script>
+    <script type="module" src="./src/main.tsx" onerror="window.__loadCompiledBundle()"></script>
+    <script>
+      // Si se abre en GitHub Pages desde la raíz (/repo/index.html), /src/main.tsx devuelve 404
+      // o falla por MIME type. Verificamos si #root sigue vacío tras 400ms en producción estática:
+      setTimeout(function () {
+        var root = document.getElementById('root');
+        if (root && root.children.length === 0 && !document.querySelector('script[src*="assets/app.js"]')) {
+          window.__loadCompiledBundle();
+        }
+      }, 400);
+    </script>
   </body>
 </html>
 
